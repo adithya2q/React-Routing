@@ -1,12 +1,6 @@
-
-import Cards from '../Cards';
-import React from 'react';
-import { useOutletContext } from 'react-router-dom';
-const Home= () => {
-const {searchQuery} = useOutletContext(); 
-  const products= [
+const productData= [
     {id:1,
-       name:'Lenovo',
+    name:'Lenovo',
      price:20000,
      category:'Laptops',
      image:'https://m.media-amazon.com/images/I/513bplmZ3VL.jpg' },
@@ -50,42 +44,17 @@ const {searchQuery} = useOutletContext();
 
     {id:8,
        name:'Adidas',
-     price:3450,
+     price:3400,
      category:'Boots',
      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqPkQa5gRK4b206CyIQICwwjzdDAXZGJCng&s'},
 
     {id:9,
        name:'Puma',
-     price:2350,
+     price:2300,
      category:'Boots',
      image: 'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/107931/01/sv01/fnd/IND/fmt/png/FUTURE-7-MATCH-FG/AG-Unisex-Football-Boots'},
 
     
   ]
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) // Filter by name
-  );
-  return (
-    <div>
- 
-      <h1 className='text-center'>Product List</h1>
-    <div className='mt-5 d-flex flex-wrap gap-2'>
-        {filteredProducts.map((product)=>(
-          <Cards 
-          key={product?.id}
-          id={product?.id}
-          ProductName={product?.name}
-          price={product?.price}
-          Category={product?.category}
-          Image={product?.image}
-           />
-        ))}
-        
-      </div>
-    </div>
-    
-  )
-}
-
-export default Home
+  export default productData

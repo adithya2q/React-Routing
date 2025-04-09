@@ -6,8 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './components/Home';
 import About from './components/About';
 import Layout from './components/Layout';
-import Users, { userLoader } from './components/Users';
-import NotFound from './components/NotFound';
+import ProductDetails from './components/ProductDetails';
+import Cart from './components/Cart';
 
 
 const router = createBrowserRouter([
@@ -17,9 +17,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <About /> },
-      { path: "users/:id", element: <Users />, loader: userLoader },
-      { path: "*", element: <NotFound /> },
-      { path: "/notfound", element: <NotFound /> },
+      { path: "ProductDetails/:id", element: <ProductDetails /> },
+      { path: "cart", element: <Cart /> },
+
+
       
     ],
   },

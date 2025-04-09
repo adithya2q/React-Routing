@@ -3,32 +3,32 @@ import { createSlice } from "@reduxjs/toolkit";
 const counterSlice=createSlice({
     name:'counter',
     initialState: {
-        value:0,
-        showDecrement:false
+        cart:{},
     },
     reducers :{
-        increment:(state,action)=>{
-            state.value+=action.payload;
-            if (state.value === 0){
-                state.showDecrement=false;
+        increment: (state, action) => {
+          const { productId,value } = action.payload;
+          if (state.cart[productId]) {
+            // If decrement, ensure that quantity doesn't go below 0
+            if (value < 0 && state.cart[productId] > 0) {
+              state.cart[productId] += value;
+            } else if (value > 0) {
+              state.cart[productId] += value;
             }
-            else{
-                state.showDecrement=true;
-            }
+          } else if (value > 0) {
+            // If the product does not exist and we're incrementing, add it to the cart
+            state.cart[productId] = value;
+          }
         },
-        decrement:(state,action)=>{
-            state.value-=action.payload;
-            if (state.value === 0){
-                state.showDecrement=false;
-            }
-            else{
-                state.showDecrement=true;
-            }
-        },
-        reset:(state)=>{
-            state.value=0;
-            state.showDecrement=false;
+        reset: (state,action) => {
+          const productId = action.payload;
+          if (state.cart[productId]) {
+            state.cart[productId]=0; // Remove the product from the cart
+          }
+          else{
+          state.cart = {}; // Reset all product quantities
         }
+        },
     }
 })
 
